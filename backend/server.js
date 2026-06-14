@@ -16,13 +16,20 @@ const server = http.createServer(app);
 // 🔥 SOCKET SETUP
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://gracious-connection-production.up.railway.app"
+    ],
     methods: ["GET", "POST"]
   }
 });
-
 // 🔥 MIDDLEWARE
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://gracious-connection-production.up.railway.app"
+  ]
+}));
 app.use(express.json());
 
 // 🔥 ROUTES
