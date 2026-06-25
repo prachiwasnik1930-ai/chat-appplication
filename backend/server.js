@@ -61,6 +61,10 @@ io.on("connection", (socket) => {
 });
 
 // 🔥 DATABASE CONNECTION
+
+app.get("/", (req, res) => {
+  res.send("EXPRESS IS WORKING");
+});
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB Connected ✅");
