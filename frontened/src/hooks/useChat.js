@@ -14,7 +14,7 @@ function useChat() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/auth/users");
+        const res = await fetch("https://chat-appplication-production.up.railway.app/api/auth/users");
         const data = await res.json();
 
         const formatted = {};
@@ -56,7 +56,7 @@ function useChat() {
   const fetchMessages = async (user) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/messages?sender=${currentUser}&receiver=${user}`
+         `https://chat-appplication-production.up.railway.app/api/messages?sender=${currentUser}&receiver=${user}`
       );
 
       const data = await res.json();
@@ -133,7 +133,7 @@ function useChat() {
     };
 
     // SAVE TO DB
-    await fetch("http://localhost:5000/api/messages/send", {
+    await fetch("https://chat-appplication-production.up.railway.app/api/messages/send", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
