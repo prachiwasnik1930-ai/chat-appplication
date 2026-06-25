@@ -13,24 +13,23 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 
-// 🔥 SOCKET SETUP
+// 🔥 EXPRESS MIDDLEWARE
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST"],
+  credentials: true
+}));
+
+app.use(express.json());
+
+// 🔥 SOCKET.IO SETUP
 const io = new Server(server, {
   cors: {
-   origin: [
-  "http://localhost:5173",
-  "https://confident-courtesy-production.up.railway.app"
-],
-    methods: ["GET", "POST"]
+    origin: "*",
+    methods: ["GET", "POST"],
+    credentials: true
   }
 });
-// 🔥 MIDDLEWARE
-app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://confident-courtesy-production.up.railway.app"
-  ]
-}));
-app.use(express.json());
 
 // 🔥 ROUTES
 app.use("/api/auth", authRoutes);
@@ -61,15 +60,15 @@ io.on("connection", (socket) => {
   });
 });
 
-// 🔥 DB CONNECTION + SERVER START
+// 🔥 DATABASE CONNECTION
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB Connected ✅");
 
-  const PORT = process.env.PORT || 5000;
+    const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT} 🚀`);
-});
+    server.listen(PORT, () => {
+      console.log(`Server running on port ${PORT} 🚀`);
+    });
   })
   .catch((err) => console.log(err));
