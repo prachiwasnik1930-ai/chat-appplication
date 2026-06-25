@@ -16,10 +16,10 @@ const server = http.createServer(app);
 // 🔥 SOCKET SETUP
 const io = new Server(server, {
   cors: {
-    origin: [
-      "http://localhost:5173",
-      "https://gracious-connection-production.up.railway.app"
-    ],
+   origin: [
+  "http://localhost:5173",
+  "https://confident-courtesy-production.up.railway.app"
+],
     methods: ["GET", "POST"]
   }
 });
@@ -27,7 +27,7 @@ const io = new Server(server, {
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://gracious-connection-production.up.railway.app"
+    "https://confident-courtesy-production.up.railway.app"
   ]
 }));
 app.use(express.json());
