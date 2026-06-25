@@ -10,7 +10,7 @@ function Login({ setIsAuthenticated }) {
 
   const handleLogin = async () => {
     try {
-      const res = await fetch("https://chat-application-production.up.railway.app/api/auth/login", {
+      const res = await fetch("https://chat-appplication-production.up.railway.app/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
