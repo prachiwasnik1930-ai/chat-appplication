@@ -15,22 +15,23 @@ const server = http.createServer(app);
 
 // 🔥 EXPRESS MIDDLEWARE
 app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST"],
+  origin: "https://gracious-connection-production.up.railway.app",
+  methods: ["GET", "POST", "OPTIONS"],
   credentials: true
 }));
+
+app.options("*", cors());
 
 app.use(express.json());
 
 // 🔥 SOCKET.IO SETUP
 const io = new Server(server, {
   cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
+    origin: "https://gracious-connection-production.up.railway.app",
+    methods: ["GET", "POST", "OPTIONS"],
     credentials: true
   }
 });
-
 // 🔥 ROUTES
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
